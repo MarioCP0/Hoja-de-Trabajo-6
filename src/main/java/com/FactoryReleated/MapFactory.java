@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.LinkedHashMap;
 
-public class MapFactory {
+public class MapFactory<T, K> {
 
-    public <T,K>Map<T,K> CreateMap(MapEnum mapEnum){ // ver como solo usar los parametros en el metodo
+    public Map<T,K> CreateMap(MapEnum mapEnum){ // ver como solo usar los parametros en el metodo
         switch(mapEnum){
             case HASHMAP:
                 return new HashMap<T,K>();
@@ -19,5 +19,4 @@ public class MapFactory {
                 return null;
         }
     }
-
 }
