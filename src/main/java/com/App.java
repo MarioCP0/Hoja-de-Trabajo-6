@@ -1,9 +1,14 @@
 package com;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.HashMap;
-import com.FactoryReleated.*;
+import java.util.TreeMap;
+
+import com.FactoryReleated.MapEnum;
+import com.FactoryReleated.MapFactory;
 
 public class App {
     public static void main(String[] args) {
@@ -73,8 +78,15 @@ public class App {
                     break;
                 case 4:
                     System.out.println("Las cartas ordenadas por tipo:");
-                    for (Map.Entry<String, String> entry : allCards.entrySet()) {
-                    System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue());
+                    ArrayList<Map.Entry<String, String>> sortedCards = new ArrayList<>(allCards.entrySet());
+                    Collections.sort(sortedCards, new Comparator<Map.Entry<String, String>>() {
+                        @Override
+                        public int compare(Map.Entry<String, String> entry1, Map.Entry<String, String> entry2) {
+                            return entry1.getValue().compareTo(entry2.getValue());
+                        }
+                    });
+                    for (Map.Entry<String, String> entry : sortedCards) {
+                        System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue());
                     }
                     break;
                 case 5:
@@ -83,10 +95,11 @@ public class App {
                         System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue());
                     }
                     break;
-                case 6:
+                    case 6:
                     System.out.println("Todas las cartas ordenadas por tipo:");
-                    for (Map.Entry<String, String> entry : allCards.entrySet()) {
-                    System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue());
+                    Map<String, String> sortedAllCards = new TreeMap<>(allCards);
+                    for (Map.Entry<String, String> entry : sortedAllCards.entrySet()) {
+                        System.out.println("Nombre: " + entry.getKey() + ", Tipo: " + entry.getValue());
                     }
                     break;
                 case 7:
